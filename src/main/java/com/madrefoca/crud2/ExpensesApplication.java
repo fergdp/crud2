@@ -2,11 +2,13 @@ package com.madrefoca.crud2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-public class Crud2Application {
+@EnableJpaAuditing
+public class ExpensesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Crud2Application.class, args);
+		SpringApplication.run(ExpensesApplication.class, args);
 	}
 }
