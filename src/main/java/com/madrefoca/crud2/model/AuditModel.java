@@ -1,4 +1,4 @@
-package com.madrefoca.crud2.entities;
+package com.madrefoca.crud2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -11,30 +11,23 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
-@Table(name = "Expenses")
+@MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
-        allowGetters = true)
-public class Expense implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
-    private Long id;
-
-    @Getter @Setter
-    private String description;
-
-    @Getter @Setter
-    private Float amount;
-
-    @Column(nullable = false, updatable = false)
+@JsonIgnoreProperties(
+        value = {"createdAt", "updatedAt"},
+        allowGetters = true
+)
+public abstract class AuditModel implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate
+    @Getter @Setter
     private Date createdAt;
 
-    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at", nullable = false)
     @LastModifiedDate
+    @Getter @Setter
     private Date updatedAt;
+
 }
