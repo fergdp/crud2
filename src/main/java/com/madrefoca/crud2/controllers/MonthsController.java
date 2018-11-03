@@ -4,23 +4,22 @@ import com.madrefoca.crud2.exceptions.ResourceNotFoundException;
 import com.madrefoca.crud2.model.Month;
 import com.madrefoca.crud2.repositories.MonthRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
 
 @RestController
-@RequestMapping(path="/months")
+@RequestMapping("/months")
 public class MonthsController {
 
     @Autowired
     MonthRepository monthRepository;
 
     @GetMapping("/all")
-    public Page<Month> getAllPosts(Pageable pageable) {
-        return monthRepository.findAll(pageable);
+    public Collection<Month> getAllMonth() {
+        return monthRepository.findAll();
     }
 
     @PostMapping("/create")

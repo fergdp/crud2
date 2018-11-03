@@ -1,11 +1,12 @@
 package com.madrefoca.crud2.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Data
+@RequiredArgsConstructor
 @Entity
 @Table(name = "Months")
 public class Month extends AuditModel implements Serializable{
