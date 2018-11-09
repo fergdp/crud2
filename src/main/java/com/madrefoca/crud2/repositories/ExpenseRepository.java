@@ -6,10 +6,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
 
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
-    Page<Expense> findByMonthId(Long monthId, Pageable pageable);
+
+    List<Expense> findByMonthAndYear(String month, int year);
+
+    List<Expense> findByYear(int year);
 }

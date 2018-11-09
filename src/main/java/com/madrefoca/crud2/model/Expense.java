@@ -1,19 +1,17 @@
 package com.madrefoca.crud2.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
+@RequiredArgsConstructor
 @Entity
 @Table(name = "Expenses")
 public class Expense extends AuditModel implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,10 +20,8 @@ public class Expense extends AuditModel implements Serializable {
 
     private Float amount;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "month_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Month month;
+    private String month;
 
+    private int year;
 
 }
