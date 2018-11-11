@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path="/expenses") // This means URL's start with /expenses (after Application path)
 public class ExpensesController {
 
@@ -45,7 +46,7 @@ public class ExpensesController {
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<?> addorUpdateExpense(@RequestBody Expense expense) {
         expenseRepository.save(expense);
         return new ResponseEntity("Expense added succcessfully", HttpStatus.OK);
